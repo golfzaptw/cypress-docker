@@ -4,13 +4,10 @@ on: push
 jobs:
   test:
     runs-on: ubuntu-latest
-    container:
-      image: 20scoops/ruby-cypress
+    uses: actions/checkout@v1
     steps:
-    - uses: ./
-    - name: get repo
-      uses: actions/checkout@v1
     - name: build docker-compose
+      uses: ./
       run: docker-compose up
     - name: upload report
       uses: actions/upload-artifact@master
