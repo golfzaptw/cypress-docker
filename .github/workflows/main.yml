@@ -1,0 +1,17 @@
+name: CI
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: ./
+    - name: get repo
+      uses: actions/cypress-docker@v1
+    - name: build docker-compose
+      run: docker-compose up
+    - name: upload report
+      uses: actions/upload-artifact@master
+      with:
+        name: my-artifact
+        path: cypress/results/report      

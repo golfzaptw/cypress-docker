@@ -10,9 +10,6 @@ warn("Large PR") if git.lines_of_code > 500
 warn("Huge PR") if git.lines_of_code > 700
 warn("Freakin Huge PR") if git.lines_of_code > 1000
 
-check_results = conflict_checker.check_conflict
-conflict_checker.check_conflict_and_comment
-
 eslint.config_file = ".eslintrc.json"
 eslint.ignore_file = ".eslintignore"
 eslint.lint
