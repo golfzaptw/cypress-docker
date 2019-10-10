@@ -4,13 +4,13 @@ on: push
 jobs:
   test:
     runs-on: ubuntu-latest
-    uses: actions/checkout@v1
     steps:
-    - name: build docker-compose
-      uses: ./
-      run: docker-compose up
-    - name: upload report
-      uses: actions/upload-artifact@master
-      with:
-        name: my-artifact
-        path: cypress/results/report      
+      - uses: actions/checkout@v1
+      - uses: ./
+      - name: build docker-compose
+        run: docker-compose up
+      - name: upload report
+        uses: actions/upload-artifact@master
+        with:
+          name: my-artifact
+          path: cypress/results/report
