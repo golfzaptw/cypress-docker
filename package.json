@@ -1,0 +1,44 @@
+{
+  "name": "boilerplate-cypress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "cypress open --env configFile=develop",
+    "cypress:run": "cypress run --env configFile=develop",
+    "cypress:verify": "./node_modules/.bin/cypress verify",
+    "format": "eslint cypress --fix",
+    "lint": "eslint cypress --color",
+    "prettier": "prettier --write ./cypress/**/*.js",
+    "prettier:check": "prettier --list-different ./cypress/**/*.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^3.4.0",
+    "cypress-slack-reporter": "^0.4.2",
+    "eslint": "^6.2.0",
+    "eslint-config-prettier": "^6.1.0",
+    "eslint-config-standard": "^14.0.0",
+    "eslint-plugin-chai-friendly": "^0.4.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "mocha": "5.2.0",
+    "mochawesome": "^4.0.1",
+    "mochawesome-merge": "^2.0.1",
+    "mochawesome-report-generator": "4.0.0",
+    "prettier": "^1.18.2",
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@cypress/webpack-preprocessor": "^4.1.0",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.39.3"
+  },
+  "dependencies": {
+    "cypress-plugin-retries": "^1.2.2",
+    "cypress-plugin-tab": "^1.0.1",
+    "eslint-plugin-cypress": "^2.6.1"
+  }
+}

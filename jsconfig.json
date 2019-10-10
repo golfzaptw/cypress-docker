@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "baseUrl": "cypress/support",
+        "paths": {
+            "constants/*": [
+                "./constants/*"
+            ],
+            "keywords/*": [
+                "./keywords/*"
+            ],
+            "utils/*": [
+                "./utils/*"
+            ]
+        }
+    }
+}
