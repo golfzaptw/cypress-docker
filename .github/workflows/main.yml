@@ -5,7 +5,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: 'Dockerfile'
+      image: 20scoops/ruby-cypress
     steps:
     - uses: ./
     - name: get repo
