@@ -9,7 +9,7 @@ jobs:
     steps:
     - uses: ./
     - name: get repo
-      uses: actions/cypress-docker@v1
+      uses: actions/checkout@v1
     - name: build docker-compose
       run: docker-compose up
     - name: upload report
