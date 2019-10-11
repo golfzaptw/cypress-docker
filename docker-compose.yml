@@ -6,7 +6,17 @@ services:
       dockerfile: Dockerfile
     container_name: e2e
     volumes:
-      - ./cypress/results/report:/usr/src/app/cypress/results/report
+      - ./cypress/results:/usr/src/app/cypress/results
     command: >
       bash -c "  
       yarn cypress run --spec cypress/integration/**/*.spec.js"
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: e2e
+    volumes:
+      - ./cypress/results:/usr/src/app/cypress/results
+    command: >
+      bash -c "  
+      yarn cypress run --spec cypress/integration/**/*.spec.js"      

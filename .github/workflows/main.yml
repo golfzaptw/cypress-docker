@@ -8,9 +8,11 @@ jobs:
       - uses: actions/checkout@v1
       - uses: ./
       - name: build docker-compose
-        run: docker-compose up
+        run: docker-compose up api
+      - name: build docker-compose
+        run: docker-compose up frontend
       - name: upload report
         uses: actions/upload-artifact@master
         with:
           name: my-artifact
-          path: cypress/results/report
+          path: cypress/results
