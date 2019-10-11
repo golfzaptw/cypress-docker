@@ -8,7 +8,5 @@ services:
     volumes:
       - ./cypress/results/report:/usr/src/app/cypress/results/report
     command: >
-              bash -c " 
-              ls
-              pwd  
-              yarn cypress run --spec cypress/integration/**/*.spec.js"
+      bash -c "  
+      yarn cypress run --spec cypress/integration/**/*.spec.js"
