@@ -9,4 +9,7 @@ services:
       - ./cypress:/usr/src/app/cypress
       - ./cypress.json:/usr/src/app/cypress.json
       - ./cypress/results/report:/usr/src/app/cypress/results/report
-    command: yarn cypress run --spec cypress/integration/**/*.spec.js
+    command: |
+    ls
+    pwd  
+    yarn cypress run --spec cypress/integration/**/*.spec.js
