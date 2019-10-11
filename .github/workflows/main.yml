@@ -7,14 +7,15 @@ jobs:
     steps:
       - name: checkout code
         uses: actions/checkout@v1
-      - name: trigget
-        run: |
-            curl --request POST \
-            --url https://api.github.com/repos/20Scoops-CNX/procom-cypress/dispatches \
-            --header 'accept: application/vnd.github.everest-preview+json' \
-            --header 'authorization: Bearer 2a8aa78e5d0e3b6ec8b55cc65307d4a4a22b5cfa' \
-            --header 'content-type: application/json' \
-            --data {\"event_type\":\"external_test\"}
+      - name: build docker-compose api
+        run: docker-compose up api
+      - name: build docker-compose frontend
+        run: docker-compose up frontend
+      - name: upload report
+        uses: actions/upload-artifact@master
+        with:
+          name: my-artifact
+          path: cypress/results
 # name: CI
 # on: push
 
