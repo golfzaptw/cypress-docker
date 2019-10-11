@@ -7,9 +7,7 @@ services:
     container_name: e2e_api
     volumes:
       - ./cypress/results:/usr/src/app/cypress/results
-    command: >
-      bash -c "  
-      yarn cypress run --spec cypress/integration/**/*.spec.js"
+    command: yarn cypress run --spec cypress/integration/**/*.spec.js
   frontend:
     build:
       context: .
@@ -17,6 +15,4 @@ services:
     container_name: e2e_frontend
     volumes:
       - ./cypress/results:/usr/src/app/cypress/results
-    command: >
-      bash -c "  
-      yarn cypress run --spec cypress/integration/**/*.spec.js"      
+    command: yarn cypress run --spec cypress/integration/**/*.spec.js   
