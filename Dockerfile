@@ -11,4 +11,3 @@ COPY cypress.json /usr/src/app/cypress.json
 RUN yarn
 RUN apt-get update && apt-get install ruby-full -y
 RUN gem install bundler
-RUN bundle install
