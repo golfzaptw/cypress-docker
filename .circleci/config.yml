@@ -15,12 +15,12 @@ jobs:
           name: Trigger
           command: |
             echo $GITHUB_TOKEN_KEY
-            "curl --request POST \
+            curl --request POST \
             --url https://api.github.com/repos/20Scoops-CNX/procom-cypress/dispatches \
             --header 'accept: application/vnd.github.everest-preview+json' \
             --header 'authorization: Bearer $GITHUB_TOKEN_KEY' \
             --header 'content-type: application/json' \
-            --data {\"event_type\":\"external_test\"}"
+            --data {"event_type":"external_test"}
 workflows:
   version: 2
   Cypress:
