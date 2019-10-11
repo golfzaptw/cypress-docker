@@ -1,13 +1,14 @@
 version: '3.6'
 services:
-  test:
+  api:
     build:
       context: .
       dockerfile: Dockerfile
     container_name: e2e
     volumes:
       - ./cypress/results/report:/usr/src/app/cypress/results/report
-    command: |
-      ls
-      pwd  
-      yarn cypress run --spec cypress/integration/**/*.spec.js
+    command: >
+              bash -c " 
+              ls
+              pwd  
+              yarn cypress run --spec cypress/integration/**/*.spec.js"
