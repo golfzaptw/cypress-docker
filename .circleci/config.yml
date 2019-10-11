@@ -14,7 +14,6 @@ jobs:
       - run:
           name: Trigger
           command: |
-            echo &GITHUB_TOKEN_KEY
             curl --request POST \
             --url https://api.github.com/repos/20Scoops-CNX/procom-cypress/dispatches \
             --header 'accept: application/vnd.github.everest-preview+json' \
