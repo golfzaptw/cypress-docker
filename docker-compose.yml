@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: e2e api
+    container_name: e2e_api
     volumes:
       - ./cypress/results:/usr/src/app/cypress/results
     command: >
@@ -14,7 +14,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: e2e frontend
+    container_name: e2e_frontend
     volumes:
       - ./cypress/results:/usr/src/app/cypress/results
     command: >
