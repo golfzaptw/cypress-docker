@@ -15,13 +15,12 @@ jobs:
           name: Trigger
           command: |
             echo $cypress_external
-            'curl --request POST \
+            "curl --request POST \
             --url https://api.github.com/repos/20Scoops-CNX/procom-cypress/dispatches \
-            --header accept: application/vnd.github.everest-preview+json \
-            --header authorization: Bearer b96f012df9dfaa9326c37795bac29db19a728cbd \
-            --header content-type: application/json \
-            --data {event_type: $cypress_external}'
-workflows:
+            --header 'accept: application/vnd.github.everest-preview+json' \
+            --header 'authorization: Bearer 0cf42b3c8db6998faeb45b96dcff4eb44ea72d16' \
+            --header 'content-type: application/json' \
+            --data $json_cypress"
   version: 2
   Cypress:
     jobs:
