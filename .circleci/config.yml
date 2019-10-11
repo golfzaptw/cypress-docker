@@ -1,8 +1,8 @@
 defaults: &defaults
   docker:
-  - image: cypress/base:10
-    environment:
-      TERM: xterm
+    - image: cypress/base:10
+      environment:
+        TERM: xterm
   working_directory: ~/app
   parallelism: 1
 version: 2.1
@@ -10,29 +10,20 @@ jobs:
   install_and_checking:
     <<: *defaults
     steps:
-    - checkout
-    - run:
-        name: Trigger
-        command: |
-          'curl --request POST \
-          --url https://api.github.com/repos/20Scoops-CNX/procom-cypress/dispatches \
-          --header accept: application/vnd.github.everest-preview+json \
-          --header authorization: Bearer b96f012df9dfaa9326c37795bac29db19a728cbd \
-          --header content-type: application/json \
-          --data {event_type: $cypress_external}'
+      - checkout
+      - run:
+          name: Trigger
+          command: |
+            echo $cypress_external
+            'curl --request POST \
+            --url https://api.github.com/repos/20Scoops-CNX/procom-cypress/dispatches \
+            --header accept: application/vnd.github.everest-preview+json \
+            --header authorization: Bearer b96f012df9dfaa9326c37795bac29db19a728cbd \
+            --header content-type: application/json \
+            --data {event_type: $cypress_external}'
 workflows:
   version: 2
   Cypress:
     jobs:
-    - install_and_checking:
-        context: global-text
-  # working_on_schedule:
-  #   triggers:
-  #     - schedule:
-  #         cron: '0 12 * * *'
-  #         filters:
-  #           branches:
-  #             only:
-  #               - master
-  #   jobs:
-  #     - install_and_checking
+      - install_and_checking:
+          context: global-text
