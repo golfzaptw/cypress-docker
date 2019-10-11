@@ -13,6 +13,7 @@ jobs:
         run: docker-compose up frontend
       - name: merge report
         run: |
+          chmod -R 777 cypress/results
           yarn --silent mochawesome-merge --reportDir cypress/results/report > cypress/results/mochawesome.json
           yarn --silent marge cypress/results/mochawesome.json -o cypress/results && rm -rf cypress/results/report
       - name: upload report

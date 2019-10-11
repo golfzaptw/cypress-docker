@@ -8,4 +8,4 @@ WORKDIR /usr/src/app/
 COPY . /usr/src/app/
 
 # INSTALL YARN
-CMD [ "yarn" ]
+RUN yarn
