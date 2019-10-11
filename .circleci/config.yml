@@ -21,7 +21,8 @@ jobs:
             --header 'authorization: Bearer 0cf42b3c8db6998faeb45b96dcff4eb44ea72d16' \
             --header 'content-type: application/json' \
             --data $json_cypress"
-version: 2
+workflows:
+  version: 2
   Cypress:
     jobs:
       - install_and_checking:
