@@ -17,7 +17,7 @@ jobs:
             curl --request POST \
             --url https://api.github.com/repos/20Scoops-CNX/procom-cypress/dispatches \
             --header 'accept: application/vnd.github.everest-preview+json' \
-            --header 'authorization: Bearer 9a3c46e2791897cecfbdc545bebe847743a84bdd' \
+            --header 'authorization: Bearer ae623709624bb0fd9656ff822b4fbb52e58c0e84' \
             --header 'content-type: application/json' \
             --data '{\"event_type\":\"external_test\"}'
 workflows:
