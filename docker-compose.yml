@@ -7,7 +7,11 @@ services:
     container_name: e2e_api
     volumes:
       - ./cypress/results:/usr/src/app/cypress/results
-    command: yarn cypress run --spec cypress/integration/**/*.spec.js
+    command: >
+              bash -c "
+              yarn cypress run --spec cypress/integration/**/*.spec.js &&
+              yarn --silent mochawesome-merge --reportDir cypress/results/report > cypress/results/mochawesome.json &&
+              yarn --silent marge cypress/results/mochawesome.json -o cypress/results && rm -rf cypress/results/report"
   frontend:
     build:
       context: .
@@ -15,4 +19,8 @@ services:
     container_name: e2e_frontend
     volumes:
       - ./cypress/results:/usr/src/app/cypress/results
-    command: yarn cypress run --spec cypress/integration/**/*.spec.js   
+    command: >
+              bash -c "
+              yarn cypress run --spec cypress/integration/**/*.spec.js &&
+              yarn --silent mochawesome-merge --reportDir cypress/results/report > cypress/results/mochawesome.json &&
+              yarn --silent marge cypress/results/mochawesome.json -o cypress/results && rm -rf cypress/results/report"

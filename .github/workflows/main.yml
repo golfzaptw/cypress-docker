@@ -11,11 +11,6 @@ jobs:
         run: docker-compose up api
       - name: build docker-compose frontend
         run: docker-compose up frontend
-      - name: merge report
-        run: |
-          sudo chmod -R 777 cypress/results
-          yarn --silent mochawesome-merge --reportDir cypress/results/report > cypress/results/mochawesome.json
-          yarn --silent marge cypress/results/mochawesome.json -o cypress/results && rm -rf cypress/results/report
       - name: upload report
         uses: actions/upload-artifact@master
         with:
