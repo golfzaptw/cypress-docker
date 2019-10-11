@@ -1,7 +1,9 @@
 version: '3.6'
 services:
   api:
-    image: 20scoops/ruby-cypress
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: e2e api
     volumes:
       - ./cypress/results:/usr/src/app/cypress/results
@@ -9,7 +11,9 @@ services:
       bash -c "  
       yarn cypress run --spec cypress/integration/**/*.spec.js"
   frontend:
-    image: 20scoops/ruby-cypress
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: e2e frontend
     volumes:
       - ./cypress/results:/usr/src/app/cypress/results
