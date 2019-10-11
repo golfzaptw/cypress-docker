@@ -20,7 +20,7 @@ jobs:
             --header 'accept: application/vnd.github.everest-preview+json' \
             --header 'authorization: Bearer '$GITHUB_TOKEN_KEY \
             --header 'content-type: application/json' \
-            --data {"event_type":"external_test"}
+            --data {\"event_type\":\"external_test\"}
 
 workflows:
   version: 2
