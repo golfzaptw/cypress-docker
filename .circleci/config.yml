@@ -5,117 +5,26 @@ defaults: &defaults
       TERM: xterm
   working_directory: ~/app
   parallelism: 1
-mergeReport: &mergeReport
-  run:
-    name: Merge report
-    command:
-      yarn --silent mochawesome-merge --reportDir cypress/results/report > cypress/results/mochawesome.json
-    when: always
-generateReport: &generateReport
-  run:
-    name: Generate report to html
-    command:
-      yarn --silent marge cypress/results/mochawesome.json -o cypress/results && rm -rf cypress/results/report
-    when: always
-sendMessageSlack: &sendMessageSlack
-  run:
-    name: Send message to slack
-    command:
-        yarn cypress-slack-reporter --verbose --report-dir "cypress/results"
-          --screenshot-dir "cypress/results/assets/screenshots" --video-dir
-          "cypress/results/assets/videos"
-    when: always
-artifactResults: &artifactResults
-  store_artifacts:
-    path: cypress/results
 version: 2.1
 jobs:
   install_and_checking:
     <<: *defaults
     steps:
     - checkout
-    - restore_cache:
-        keys:
-        - v2-deps-{{ .Branch }}-{{ checksum "package.json" }}
-        - v2-deps-{{ .Branch }}-
-        - v2-deps-
     - run:
-        name: Install dependencies
-        command: yarn
-    - save_cache:
-        key: v2-deps-{{ .Branch }}-{{ checksum "package.json" }}
-        paths:
-        - ~/.npm
-        - ~/.cache
-    - persist_to_workspace:
-        root: .
-        paths:
-        - node_modules
-    - persist_to_workspace:
-        root: ~/
-        paths:
-        - .cache/Cypress
-    - run:
-        name: Verify cypress
-        command: yarn cypress:verify
-    - run:
-        name: Check ESLint
-        command: yarn lint
-    - run:
-        name: Check Prettier Code
-        command: yarn prettier:check
-    - run:
-        name: Install ruby
-        command: apt-get update && apt-get install ruby-full -y
-    - run:
-        name: Install bundle
-        command: gem install bundle
-    - restore_cache:
-        name: Restore Cache Gems
-        keys:
-        - v3-gems-{{ checksum "Gemfile.lock" }}
-        - v3-gems-
-    - run:
-        name: Bundle Install
+        name: Trigger
         command: |
-          bundle install --path vendor/bundle
-    - save_cache:
-        name: Save Cache Gems
-        key: v3-gems-{{ checksum "Gemfile.lock" }}
-        paths: vendor/bundle
-    - run:
-        name: Run Danger
-        command: bundle exec danger
-  testingCypress:
-    <<: *defaults
-    steps:
-    - checkout
-    - attach_workspace:
-        at: .
-    - attach_workspace:
-        at: ~/
-    - run:
-        name: Verify cypress
-        command: yarn cypress:verify
-    - run:
-        name: Run automated test balr balr balr .....
-        command: yarn cypress:run --spec ''
-    - <<: *mergeReport
-    - <<: *generateReport
-    - <<: *artifactResults
-    - <<: *sendMessageSlack
+          'curl --request POST \
+          --url https://api.github.com/repos/20Scoops-CNX/procom-cypress/dispatches \
+          --header 'accept: application/vnd.github.everest-preview+json' \
+          --header 'authorization: Bearer b96f012df9dfaa9326c37795bac29db19a728cbd' \
+          --header 'content-type: application/json' \
+          --data '{"event_type": "external_test"}''
 workflows:
   version: 2
   Cypress:
     jobs:
     - install_and_checking
-    - testingCypress:
-        requires:
-        - install_and_checking
-        filters:
-          branches:
-            only:
-              - dev
   # working_on_schedule:
   #   triggers:
   #     - schedule:
