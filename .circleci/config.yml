@@ -19,12 +19,14 @@ jobs:
           --header accept: application/vnd.github.everest-preview+json \
           --header authorization: Bearer b96f012df9dfaa9326c37795bac29db19a728cbd \
           --header content-type: application/json \
-          --data {event_type: external_test}'
+          --data {event_type: $cypress_external}'
 workflows:
   version: 2
   Cypress:
     jobs:
-    - install_and_checking
+    - install_and_checking:
+      context:
+        - global-text
   # working_on_schedule:
   #   triggers:
   #     - schedule:
