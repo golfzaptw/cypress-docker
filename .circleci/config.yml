@@ -16,7 +16,7 @@ jobs:
           command: |
             echo $GITHUB_TOKEN_KEY
             curl --request POST \
-            --url https://api.github.com/repos/20Scoops-CNX/procom-cypress/dispatches \
+            --url https://api.github.com/repos/golfzaptw/cypress-docker/dispatches \
             --header 'accept: application/vnd.github.everest-preview+json' \
             --header 'authorization: Bearer '$GITHUB_TOKEN_KEY \
             --header 'content-type: application/json' \
@@ -28,3 +28,11 @@ workflows:
     jobs:
       - install_and_checking:
           context: global-text
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+              ignore:
+                - merge
+
