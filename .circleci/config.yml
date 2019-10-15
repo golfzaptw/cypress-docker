@@ -14,13 +14,12 @@ jobs:
       - run:
           name: Trigger
           command: |
-            echo $GITHUB_TOKEN_KEY
             curl --request POST \
             --url https://api.github.com/repos/golfzaptw/cypress-docker/dispatches \
             --header 'accept: application/vnd.github.everest-preview+json' \
-            --header 'authorization: Bearer '$GITHUB_TOKEN_KEY \
+            --header 'authorization: Bearer '${GITHUB_TOKEN_KEY} \
             --header 'content-type: application/json' \
-            --data {\"event_type\":\"external_test\"}
+            --data '{"event_type":"external_test"}'
 
 workflows:
   version: 2
@@ -35,4 +34,3 @@ workflows:
                 - dev
               ignore:
                 - merge
-
