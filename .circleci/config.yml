@@ -27,8 +27,7 @@ workflows:
   Cypress:
     jobs:
       - install_and_checking:
-          context: 
-            - global-text
+          context: global-text
           filters:
             branches:
               only:
