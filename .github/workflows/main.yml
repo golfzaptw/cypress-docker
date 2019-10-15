@@ -1,54 +1,12 @@
-name: Trigger from develop
-
+name: CI
 on: 
-  repository_dispatch:
-    types: external_test
+  push:
+    branches:
+      - master
 
 jobs:
-  API:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: Show trigger
-        run: echo 'Trigger'
-# name: CI
-# on: push
-
-# jobs:
-#   test:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: checkout code
-#         uses: actions/checkout@v1
-#       - name: build docker-compose api
-#         run: docker-compose up api
-#       - name: build docker-compose frontend
-#         run: docker-compose up frontend
-#       - name: upload report
-#         uses: actions/upload-artifact@master
-#         with:
-#           name: my-artifact
-#           path: cypress/results
-# name: CI
-# on: push
-
-# jobs:
-#   test:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: checkout code
-#         uses: actions/checkout@v1
-#       - name: install yarn
-#         run: yarn
-#       - name: build
-#         run: yarn cypress run --spec cypress/integration/**/*.spec.js
-#       - name: build 2
-#         run: yarn cypress run --spec cypress/integration/**/*.spec.js
-#       - name: merge report
-#         run: |
-#           yarn --silent mochawesome-merge --reportDir cypress/results/report > cypress/results/mochawesome.json
-#           yarn --silent marge cypress/results/mochawesome.json -o cypress/results && rm -rf cypress/results/report
-#       - name: upload report
-#         uses: actions/upload-artifact@master
-#         with:
-#           name: my-artifact
-#           path: cypress/results
+      - name: push
+        run: echo 'push'
