@@ -13,31 +13,43 @@ jobs:
       - checkout
       - run:
           name: Trigger
-          command: |
-            curl --request POST \
-            --url https://api.github.com/repos/golfzaptw/cypress-docker/dispatches \
-            --header 'accept: application/vnd.github.everest-preview+json' \
-            --header 'authorization: Bearer '${GITHUB_TOKEN_KEY} \
-            --header 'content-type: application/json' \
-            --data '{"event_type":"external_test"}'
+          command: echo 'dev'
   staging:
     <<: *defaults
     steps:
       - checkout
       - run:
           name: stage
-          command: echo 'stage'            
+          command: echo 'stage'
+  trigger:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: Trigger
+          command: |
+            curl --request POST \
+            --url https://api.github.com/repos/golfzaptw/cypress-docker/dispatches \
+            --header 'accept: application/vnd.github.everest-preview+json' \
+            --header 'authorization: Bearer '${GITHUB_TOKEN_KEY} \
+            --header 'content-type: application/json' \
+            --data '{"event_type":"external_test"}'          
 
 workflows:
   version: 2
   Cypress:
     jobs:
       - deploy:
-          context: global-text
           filters:
             branches:
               only:
                 - dev
+      - trigger:
+          requires:
+            - deploy
+          context: global-text
+          filters:
+            branches:
               ignore:
                 - release/v*
       - staging:
