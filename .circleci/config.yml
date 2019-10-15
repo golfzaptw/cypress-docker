@@ -30,7 +30,7 @@ workflows:
           filters:
             branches:
               only:
-                - masters
+                - master
                 - dev
               ignore:
                 - merge
