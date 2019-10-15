@@ -33,4 +33,4 @@ workflows:
                 - master
                 - dev
               ignore:
-                - merge
+                - release/v*
