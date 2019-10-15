@@ -32,5 +32,3 @@ workflows:
               only:
                 - master
                 - dev
-              ignore:
-                - merge
