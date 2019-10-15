@@ -39,7 +39,7 @@ workflows:
               only:
                 - dev
               ignore:
-                - release\/v*/
+                - release/v*
       - staging:
           filters:
             branches:
