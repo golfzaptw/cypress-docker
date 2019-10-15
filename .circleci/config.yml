@@ -7,7 +7,7 @@ defaults: &defaults
   parallelism: 1
 version: 2.1
 jobs:
-  install_and_checking:
+  deploy:
     <<: *defaults
     steps:
       - checkout
@@ -20,17 +20,28 @@ jobs:
             --header 'authorization: Bearer '${GITHUB_TOKEN_KEY} \
             --header 'content-type: application/json' \
             --data '{"event_type":"external_test"}'
+  staging:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: stage
+          command: echo 'stage'            
 
 workflows:
   version: 2
   Cypress:
     jobs:
-      - install_and_checking:
+      - deploy:
           context: global-text
           filters:
             branches:
               only:
-                - master
                 - dev
               ignore:
-                - release/v*
+                - release\/v*/
+      - staging:
+          filters:
+            branches:
+              only:
+                - master
